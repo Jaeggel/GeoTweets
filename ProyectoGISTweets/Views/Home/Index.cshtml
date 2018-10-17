@@ -1,0 +1,20 @@
+﻿<section id="contact">
+    <div class="container">
+        <h2 class="text-center text-uppercase text-secondary mb-0">Ubicación de Tweets</h2>
+        <hr />
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="map"></div>
+        </div>
+    </div>
+</section>
+<script src="~/Scripts/Custom/Home.js"></script>
+<script>
+    $(document).ready(function () {
+        getMapDataHome('@Url.Action("SetMap", "Home")');
+    });
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlo0usfMTNusPk8yxyNotYa0XBgd1I8Eo&callback=initMap">
+</script>

@@ -1,0 +1,108 @@
+﻿<section id="contact">
+    <div class="container">
+        <h2 class="text-center text-uppercase text-secondary mb-0">Ingreso de Tweets</h2>
+        <hr />
+        @using (Html.BeginForm("Ingreso", "Home"))
+        {
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                            <label>Location</label>
+                            <input class="form-control" name="Location" type="text" placeholder="Location" required>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                            <label>Latitude</label>
+                            <input class="form-control" id="Latitud" maxlength="20" name="Latitud" type="text" placeholder="Latitud" required>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                            <label>Longitude</label>
+                            <input class="form-control" id="Longitud" maxlength="20" name="Longitud" type="text" placeholder="Longitud" required>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                            <label>User</label>
+                            <input class="form-control" name="User" type="text" placeholder="User" required>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                            <label>Time</label>
+                            <input class="form-control" name="Time" type="text" placeholder="Time" required>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                            <label>Text</label>
+                            <input class="form-control" name="Text" type="text" placeholder="Text" required>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                            <label>Id</label>
+                            <input class="form-control" name="Id" type="number" placeholder="Id" required>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                            <label>Screen Name</label>
+                            <input class="form-control" name="ScreenName" type="text" placeholder="ScreenName" required>
+                        </div>
+                    </div>
+                    <br>
+                    <div id="success"></div>
+                    <div class="form-group" align="center">
+                        <button id="register" type="submit" class="btn btn-primary btn-xl">Registrar</button>
+                        <button type="button" class="btn btn-default btn-xl" onclick="location.href='@Url.Action("Index", "Home")'">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+<script type="text/javascript">
+    window.onload = function ()
+    {
+        if ("@ViewBag.RegisterVerif" !== "") {
+            showNotify("¡Registro Exitoso!", "@ViewBag.RegisterVerif", "success");
+        } else if ("@ViewBag.RegisterVerifError" !== "" ) {
+            showNotify("Registro Erróneo...", "@ViewBag.RegisterVerifError", "danger");
+        }
+    };
+    $(document).ready(function () {
+        $('input[id = "Latitud"]').on("keyup", function (e) {
+            var val = $(this).val();
+            var str = val.replace(',', '.');
+            $(this).val(str);
+        });
+        $('input[id = "Longitud"]').on("keyup", function (e) {
+            var val = $(this).val();
+            var str = val.replace(',', '.');
+            $(this).val(str);
+        });
+        $('#Latitud').keypress(function (event) {
+            var $this = $(this);
+            if ((event.which != 46 || $this.val().indexOf('.') != -1) &&
+                (event.which != 45 || $this.val().indexOf('-') != -1) &&
+                ((event.which < 48 || event.which > 57) &&
+                    (event.which != 0 && event.which != 8))) {
+                event.preventDefault();
+            }
+        });
+        $('#Longitud').keypress(function (event) {
+            var $this = $(this);
+            if ((event.which != 46 || $this.val().indexOf('.') != -1) &&
+                (event.which != 45 || $this.val().indexOf('-') != -1) &&
+                ((event.which < 48 || event.which > 57) &&
+                    (event.which != 0 && event.which != 8))) {
+                event.preventDefault();
+            }
+        });
+    });
+</script>

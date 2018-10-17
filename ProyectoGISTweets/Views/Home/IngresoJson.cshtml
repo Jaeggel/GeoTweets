@@ -1,0 +1,26 @@
+﻿<section id="contact">
+    <div class="container">
+        <h2 class="text-center text-uppercase text-secondary mb-0">Ingreso de Tweets mediante Json</h2>
+        <hr />
+        <div class="container">
+            <div class="form-group" align="center">
+                @using (Html.BeginForm("CargaJson", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <label for="file">Subir Archivo JSON:</label>
+                    <input type="file" class="btn btn-default btn-xl" name="file" id="file" /><br><br>
+                    <input type="submit" class="btn btn-primary btn-xl" value="Cargar JSON" />
+                    <br><br>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+        window.onload = function () {
+            if ("@ViewBag.Message" !== "") {
+                showNotify("¡Carga Exitosa!", "@ViewBag.Message", "success");
+            } else if ("@ViewBag.MessageError" !== "" ) {
+                showNotify("Registro Erróneo...", "@ViewBag.MessageError", "danger");
+            }
+        };
+</script>
